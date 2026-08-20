@@ -1,4 +1,4 @@
-# KLTN-SLAM-2D
+# KLTN-2D-SLAM
 # Autonomous Differential Drive Robot SLAM (LD14 LiDAR + ESP32 + MPU6050 + ROS 2)
 
 An end-to-end ROS 2 Humble mapping and localization system for custom differential-drive mobile robots. This repository integrates high-speed C++ driver nodes for the **LD14 LiDAR** and **ESP32 microcontroller (MPU6050 IMU + Quadrature Encoders)**, combined with an **Extended Kalman Filter (EKF)** and **SLAM Toolbox** for robust 2D occupancy grid mapping.
