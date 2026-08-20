@@ -1,0 +1,35 @@
+slam_toolbox:
+  ros__parameters:
+    # Frames
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_link
+    scan_topic: /scan # Tên topic laser sau khi đã qua bộ lọc
+    use_scan_matching: true    # Bắt buộc SLAM tự khớp tia
+
+    # Chế độ hoạt động
+    mode: mapping 
+
+    # Thông số LiDAR (LD14 có tầm xa khoảng 8m)
+    max_laser_range: 8.0
+    min_laser_range: 0.1
+    max_beams: 360
+
+    # Tối ưu hóa (Cải tiến cho ESP32)
+    # Vì ESP32 truyền qua Serial có thể trễ, ta tăng thời gian chờ
+    # 1. Tăng thời gian độ trễ (Triệt tiêu hoàn toàn lỗi thời gian)
+    transform_timeout: 1.0
+    tf_buffer_duration: 30.0
+    stack_size_to_use: 40000000 
+
+    # Thông số toán học cho SLAM (Giữ mặc định cho độ ổn định)
+    do_loop_closing: true
+    loop_search_maximum_distance: 3.0
+    minimum_time_interval: 0.5
+    resolution: 0.05 # Độ phân giải bản đồ 5cm/pixel
+    
+    # 2. Tăng độ nhạy của thuật toán (Cực kỳ quan trọng khi không có Odom)
+    # Mặc định của nó là 0.5 (phải đi 50cm nó mới chịu vẽ). 
+    # Ta giảm xuống 0.1 để nhích nhẹ 10cm là nó đã cập nhật bản đồ!
+    minimum_travel_distance: 0.1
+    minimum_travel_heading: 0.1

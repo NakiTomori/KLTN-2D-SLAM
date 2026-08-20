@@ -1,0 +1,33 @@
+ekf_filter_node:
+  ros__parameters:
+    frequency: 30.0
+    two_d_mode: true
+    publish_tf: true
+
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: odom
+
+    # Cấu hình Bánh xe (Chỉ lấy Vx)
+    odom0: /wheel/odom
+    odom0_config: [false, false, false,
+                   false, false, false,
+                   true,  false, false,  # Vx = true
+                   false, false, false,
+                   false, false, false]
+
+    # Cấu hình IMU (Chỉ lấy V_yaw)
+    imu0: /imu/data
+    imu0_config: [false, false, false,
+                  false, false, false,
+                  false, false, false,
+                  false, false, true,    # V_yaw = true
+                  false, false, false]
+                  
+# [ X,      Y,       Z,       ]  <-- Dòng 1: Tọa độ tuyệt đối
+# [ Roll,   Pitch,   Yaw,     ]  <-- Dòng 2: Góc quay tuyệt đối
+# [ Vx,     Vy,      Vz,      ]  <-- Dòng 3: Vận tốc di chuyển (Linear)
+# [ V_roll, V_pitch, V_yaw,   ]  <-- Dòng 4: Vận tốc xoay (Angular)
+# [ Ax,     Ay,      Az       ]  <-- Dòng 5: Gia tốc dài
+
